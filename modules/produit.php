@@ -22,8 +22,10 @@ class produit{
         $result = $query->fetchAll();
         return $result;
     }
-    static function supremer($connection,$id){
-        $query = "DELETE FROM product WHERE id = $id ";
+    static function supprimer_produit($connection, $id) {
+        $query = $connection->prepare("DELETE FROM product WHERE id = :id");
+        $query->bindParam(':id', $id);
+        $query->execute();
     }
 
 
